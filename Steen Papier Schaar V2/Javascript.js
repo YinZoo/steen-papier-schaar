@@ -4,9 +4,7 @@ const spelerOutput = document.querySelector("#speler");
 const resultaatOutput = document.querySelector("#resultaat");
 
 // Knoppen ophalen
-const steenButton = document.querySelector("#steen");
-const papierButton = document.querySelector("#papier");
-const schaarButton = document.querySelector("#schaar");
+const buttons = document.querySelectorAll(".button");
 
 // Mogelijke keuzes
 const keuzes = ["Steen", "Papier", "Schaar"];
@@ -48,15 +46,9 @@ function speelSpel(spelerKeuze) {
     console.log("Resultaat:", resultaat);
 }
 
-// Event handlers, dit zorgt dat er iets gebeurt als je op een knop klikt
-steenButton.addEventListener("click", function () {
-    speelSpel("Steen");
-});
-
-papierButton.addEventListener("click", function () {
-    speelSpel("Papier");
-});
-
-schaarButton.addEventListener("click", function () {
-    speelSpel("Schaar");
+// addEventListener zorgt dat er iets gebeurt als je op een knop klikt. (forEach loopt door alle knoppen heen)
+buttons.forEach(function(button) {
+    button.addEventListener("click", function () {
+        speelSpel(this.id);
+    });
 });
