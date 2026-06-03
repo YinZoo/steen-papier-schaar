@@ -25,6 +25,26 @@ p {
     margin: 20px auto;
 }
 
+/* Win streak box */
+.streak-box {
+    display: inline-block;
+    text-align: center;
+    background-color: #b2ddef;
+    border: 2px solid #aa9bdf;
+    border-radius: 14px;
+    padding: 16px 24px;
+    margin: 20px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+.streak-box .streak-label {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2f25af;
+    margin: 8px 0;
+}
+.streak-box .streak-label span {
+    color: #3d097a;
+}
 /* Resultaat groter maken */
 #resultaat {
     font-weight: bold;
