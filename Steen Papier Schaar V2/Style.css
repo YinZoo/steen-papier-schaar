@@ -17,6 +17,14 @@ p {
     margin: 10px;
 }
 
+/* Afbeelding */
+.image {
+    display: block;
+    width: 550px;
+    height: auto;  
+    margin: 20px auto;
+}
+
 /* Resultaat groter maken */
 #resultaat {
     font-weight: bold;
