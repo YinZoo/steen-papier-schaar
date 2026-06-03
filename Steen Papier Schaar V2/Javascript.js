@@ -9,6 +9,14 @@ const buttons = document.querySelectorAll(".button");
 // Mogelijke keuzes
 const keuzes = ["Steen", "Papier", "Schaar"];
 
+//score elementen ophalen
+const spelerScoreOutput = document.querySelector("#spelerScore");
+const computerScoreOutput = document.querySelector("#computerScore");
+
+// score bijhouden
+let spelerScore = 0;
+let computerScore = 0;
+
 // Functie om een ronde te spelen
 function speelSpel(spelerKeuze) {
 
@@ -32,9 +40,16 @@ function speelSpel(spelerKeuze) {
         (spelerKeuze === "Schaar" && computerKeuze === "Papier")
     ) {
         resultaat = "Speler wint!";
+
+        spelerScore++; // "++" verhoogt de score met 1
+        spelerScoreOutput.innerHTML = spelerScore; //spelerScoreOutput.innerHTML werkt de score bij in de HTML
+
     }
     else {
         resultaat = "Computer wint!";
+
+        computerScore++;
+        computerScoreOutput.innerHTML = computerScore;
     }
 
     // Resultaat tonen
@@ -46,9 +61,12 @@ function speelSpel(spelerKeuze) {
     console.log("Resultaat:", resultaat);
 }
 
-// addEventListener zorgt dat er iets gebeurt als je op een knop klikt. (forEach loopt door alle knoppen heen)
+
+// forEach loopt door alle knoppen heen.
 buttons.forEach(function(button) {
+    // addEventListener zorgt dat er iets gebeurt als je op een knop klikt. 
     button.addEventListener("click", function () {
-        speelSpel(this.id);
+        // this.innerHTML geeft de tekst van de knop die je hebt geklikt (Steen, Papier of Schaar) door aan de speelSpel functie.
+        speelSpel(this.innerHTML);
     });
 });
