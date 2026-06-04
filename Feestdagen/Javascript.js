@@ -1,25 +1,40 @@
-// Element ophalen uit de HTML
+// Element ophalen uit de HTML (Zoekt naar de id "feestdag")
 const feestdagOutput = document.querySelector("#feestdag");
 
-// API request maken
+// Huidige datum ophalen
+const vandaag = new Date();
+
+// "fetch" haalt data op van de API, de link is een website die informatie geeft over feestdagen in Nederland in 2026
 fetch("https://date.nager.at/api/v3/PublicHolidays/2026/NL")
 
-    // Response omzetten naar JSON
+    // De function response wacht todat de data is opgehaald
     .then(function(response) {
-        console.log(response);
+        // Daarna wordt de data omgezet naar JSON formaat.
         return response.json();
     })
 
-    // JSON data gebruiken
+    // De data nu in JSON formaat wordt nu gelogd in de console.
     .then(function(data) {
         console.log(data);
 
-        // Eerste feestdag tonen
-        feestdagOutput.innerHTML = data[0].localName;
-    })
+        // Loopt door alle feestdagen in de data heen
+        for (let i = 0; i < data.length; i++) {
 
-    // Fouten opvangen
-    .catch(function(error) {
-        console.log(error);
-        feestdagOutput.innerHTML = "Er ging iets fout.";
+            // data[i] pakt een feestdag uit de lijst en .date pakt de datum van die feestdag.
+            // Deze datum wordt omgezet naar een Date object zodat ik deze later kan vergelijken met de huidige datum.
+            const feestdagDatum = new Date(data[i].date);
+
+            // Hier vergelijk ik de datum van de feestdag met de huidige datum.
+            if (feestdagDatum > vandaag) {
+
+                // Eerstvolgende feestdag tonen
+                feestdagOutput.innerHTML =
+                    data[i].localName + " - " + data[i].date;
+
+                // Stoppen zodra de eerste gevonden is
+                break;
+            }
+
+        }
+
     });
