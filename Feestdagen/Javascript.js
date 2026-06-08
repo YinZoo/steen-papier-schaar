@@ -1,39 +1,74 @@
-// Element ophalen uit de HTML (Zoekt naar de id "feestdag")
+// Element ophalen voor feestdag
 const feestdagOutput = document.querySelector("#feestdag");
 
 // Huidige datum ophalen
 const vandaag = new Date();
 
-// "fetch" haalt data op van de API, de link is een website die informatie geeft over feestdagen in Nederland in 2026
+// API request maken
 fetch("https://date.nager.at/api/v3/PublicHolidays/2026/NL")
 
-    // De function response wacht todat de data is opgehaald
+    // JSON ophalen
     .then(function(response) {
-        // Daarna wordt de data omgezet naar JSON formaat.
         return response.json();
     })
 
-    // De data nu in JSON formaat wordt nu gelogd in de console.
+    // Data gebruiken
     .then(function(data) {
+
         console.log(data);
 
-        // Loopt door alle feestdagen in de data heen
+        // Door feestdagen heen lopen
         for (let i = 0; i < data.length; i++) {
 
-            // data[i] pakt een feestdag uit de lijst en .date pakt de datum van die feestdag.
-            // Deze datum wordt omgezet naar een Date object zodat ik deze later kan vergelijken met de huidige datum.
+            // Datum omzetten naar Date object
             const feestdagDatum = new Date(data[i].date);
 
-            // Hier vergelijk ik de datum van de feestdag met de huidige datum.
+            // Vergelijken met huidige datum
             if (feestdagDatum > vandaag) {
 
                 // Eerstvolgende feestdag tonen
                 feestdagOutput.innerHTML =
                     data[i].localName + " - " + data[i].date;
 
-                // Stoppen zodra de eerste gevonden is
                 break;
             }
+        }
+    });
+
+// Tabel body ophalen
+const tabelBody = document.querySelector("#tabelBody");
+
+// Database ophalen via PHP
+fetch("database.php")
+
+    // JSON omzetten
+    .then(function(response) {
+
+        return response.json();
+
+    })
+
+    // Data gebruiken
+    .then(function(data) {
+
+        console.log(data);
+
+        // Door alle database resultaten heen lopen
+        for (let i = 0; i < data.length; i++) {
+
+            // Nieuwe tabel rij maken
+            const nieuweRij = document.createElement("tr");
+
+            // HTML toevoegen aan de rij
+            nieuweRij.innerHTML = `
+                <td>${data[i].ID}</td>
+                <td>${data[i].Name}</td>
+                <td>${data[i].Email}</td>
+                <td>${data[i].Hours}</td>
+            `;
+
+            // Rij toevoegen aan tabel
+            tabelBody.appendChild(nieuweRij);
 
         }
 

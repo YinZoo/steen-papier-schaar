@@ -4,18 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feestdagen</title>
+
+    <title>Urenregistratie Systeem</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Feestdagen API</h1>
-    <p>
-        Volgende feestdag:
-        <!-- Hier wordt "laden..." laten zien todat de javascript geladen is en de data is opgehaald -->
-        <span id="feestdag">laden...</span>
-    </p>
+    <header>
+        <h1>Urenregistratie Systeem</h1>
+    </header>
+
+    <main>
+
+        <!-- Dashboard -->
+        <section class="dashboard">
+
+            <h2>Dashboard</h2>
+
+            <!-- Feestdag -->
+            <div class="card">
+
+                <h3>Volgende feestdag</h3>
+
+                <p>
+                    <span id="feestdag">Laden...</span>
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Registraties -->
+        <section>
+
+            <h2>Registraties</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Naam</th>
+                        <th>Email</th>
+                        <th>Uren</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabelBody">
+
+                    <!-- SQL data komt hier -->
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
 
     <script src="Javascript.js"></script>
 
 </body>
+
 </html>
